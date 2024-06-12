@@ -25,7 +25,7 @@ export default function MovieDetails({ movie_id }: { movie_id: string }) {
   const genresString = movie?.genres.map((genre) => genre.name).join(', ');
 
   return (
-    <section className="min-h-screen w-full flex justify-center items-center flex-col  bg-gradient-to-b from-black via-red-950 to-black text-white font-medium">
+    <section className="md:h-screen min-h-screen w-full flex justify-center items-center flex-col  bg-gradient-to-b from-black via-red-950 to-black text-white font-medium">
       {movie && (
         <div className="flex flex-col gap-4 justify-center items-center bg-black/50 h-full p-4 md:p-0 ">
           <strong className="text-3xl ">{movie.original_title}</strong>
