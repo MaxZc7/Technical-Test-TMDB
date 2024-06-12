@@ -28,7 +28,9 @@ export default function Hero() {
           'Content-Type': 'application/json',
         },
       });
-
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       const data = await response.json();
       setMovies(data.dataMovies.results);
       setTvShows(data.dataTvShows.results);
@@ -51,9 +53,9 @@ export default function Hero() {
         break;
       case 'ArrowRight':
         if (activeSection === 'movies') {
-          setFocus((prevFocus) => Math.min(prevFocus + 1, movies?.length - 2));
+          setFocus((prevFocus) => Math.min(prevFocus + 1, movies?.length - 1));
         } else if (activeSection === 'tvShows') {
-          setFocus((prevFocus) => Math.min(prevFocus + 1, tvShows?.length - 2));
+          setFocus((prevFocus) => Math.min(prevFocus + 1, tvShows?.length - 1));
         }
         break;
       case 'ArrowDown':
@@ -70,6 +72,7 @@ export default function Hero() {
         } else if (activeSection === 'tvShows') {
           window.location.href = `/tvshow/${tvShows[focus].id}`;
         }
+        break;
 
       default:
         break;
@@ -78,7 +81,7 @@ export default function Hero() {
 
   const getTransformValue = (itemsLength: number) => {
     const cardWidth = 400;
-    const visibleCards = 4;
+    const visibleCards = 2.7;
     const offset = Math.floor(visibleCards / 2);
     const maxOffset = itemsLength - visibleCards;
     const transformValue =
@@ -186,7 +189,7 @@ export default function Hero() {
                 <a
                   href={`/tvshow/${tvShow.id}`}
                   key={tvShow.id}
-                  className={`md:min-w-[400px] relative group  ${
+                  className={`md:min-w-[400px] md:min-h-[223px] relative group  ${
                     activeSection === 'tvShows' && index === focus
                       ? 'outline outline-4 outline-white'
                       : ''
