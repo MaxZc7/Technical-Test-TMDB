@@ -2,6 +2,8 @@ Found this technical test in a discord.
 
 test link: https://fxdigital.notion.site/Technical-Assessment-f9f027b6573d43f788e123b90c87052c
 
+// todo: responsive design
+
 ---
 
 # Brief
