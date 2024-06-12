@@ -7,7 +7,6 @@ export async function GET({ params, request }) {
       headers: { 'Content-Type': 'application/json' },
     });
   }
-
   const endpoint = `https://api.themoviedb.org/3/tv/${id}`;
 
   const response = await fetch(endpoint, {

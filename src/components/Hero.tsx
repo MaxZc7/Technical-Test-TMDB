@@ -88,15 +88,15 @@ export default function Hero() {
 
   return (
     <div
-      className=" justify-center items-center w-full flex flex-col h-screen bg-gradient-to-b from-black via-red-950 to-black gap-4"
+      className=" justify-center items-center w-full flex flex-col md:h-screen bg-gradient-to-b from-black via-red-950 to-black gap-4"
       onKeyDown={handleKeyDown}
       ref={heroRef}
       tabIndex={0}
     >
-      <section className="flex flex-col max-w-[90vw] w-full">
+      <section className="flex flex-col md:max-w-[90vw] w-full">
         <h2 className="mb-8 z-10 text-white text-4xl px-4">Trending Movies</h2>
         <div
-          className="flex gap-8 max-h-[260px]   p-4 transition-all duration-300"
+          className="flex md:flex-row flex-col gap-8 md:max-h-[260px]   p-4 transition-all duration-300 mx-4 md:mx-0"
           style={{
             transform: `${
               activeSection == 'movies'
@@ -115,7 +115,7 @@ export default function Hero() {
                 <a
                   href={`movie/${movie.id}`}
                   key={movie.id}
-                  className={`min-w-[400px] min-h-[223px] relative group ${
+                  className={`md:min-w-[400px] md:min-h-[223px] relative group ${
                     activeSection === 'movies' && index === focus
                       ? 'outline outline-4 outline-white'
                       : ''
@@ -162,12 +162,12 @@ export default function Hero() {
           )}
         </div>
       </section>
-      <section className=" flex flex-col max-w-[90vw] w-full">
+      <section className=" flex flex-col md:max-w-[90vw] w-full">
         <h3 className="mb-8 z-10 text-white text-4xl px-4">
           Trending TV Shows
         </h3>
         <div
-          className={`flex gap-8 p-4 transition-all duration-300 max-h-[260px] `}
+          className={`flex md:flex-row flex-col gap-8 p-4 transition-all duration-300 md:max-h-[260px] mx-4 md:mx-0 `}
           style={{
             transform: `${
               activeSection == 'tvShows'
@@ -186,7 +186,7 @@ export default function Hero() {
                 <a
                   href={`/tvshow/${tvShow.id}`}
                   key={tvShow.id}
-                  className={`min-w-[400px] relative group  ${
+                  className={`md:min-w-[400px] relative group  ${
                     activeSection === 'tvShows' && index === focus
                       ? 'outline outline-4 outline-white'
                       : ''

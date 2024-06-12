@@ -25,11 +25,11 @@ export default function MovieDetails({ movie_id }: { movie_id: string }) {
   const genresString = movie?.genres.map((genre) => genre.name).join(', ');
 
   return (
-    <section className="h-screen w-full flex justify-center items-center flex-col  bg-gradient-to-b from-black via-red-950 to-black text-white font-medium">
+    <section className="min-h-screen w-full flex justify-center items-center flex-col  bg-gradient-to-b from-black via-red-950 to-black text-white font-medium">
       {movie && (
-        <div className="flex flex-col gap-4 justify-center items-center bg-black/50 h-full ">
+        <div className="flex flex-col gap-4 justify-center items-center bg-black/50 h-full p-4 md:p-0 ">
           <strong className="text-3xl ">{movie.original_title}</strong>
-          <div className="relative">
+          <div className="relative mx-4 md:mx-0">
             <img
               className="rounded-xl z-20 absolute"
               src={movieBackdropPath}
@@ -51,7 +51,7 @@ export default function MovieDetails({ movie_id }: { movie_id: string }) {
           <p>
             <strong>Release date:</strong> {movie.release_date}{' '}
           </p>
-          <p className="max-w-[50%] text-center">
+          <p className="md:max-w-[50%] mx-4 md:mx-0 text-center">
             <strong>Overview:</strong> {movie.overview}
           </p>
           <p>
