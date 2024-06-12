@@ -3,12 +3,15 @@ const { id } = Astro.params;
 import Layout from '../../layouts/Layout.astro';
 import MovieDetails from '../../components/MovieDetails';
 
-const response = await fetch(`http://localhost:4321/api/movie-details${id}`, {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const response = await fetch(
+  `https://technical-test-tmdb.vercel.app/api/movie-details${id}`,
+  {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+);
 const data = await response.json();
 const title = data.data.title;
 ---
