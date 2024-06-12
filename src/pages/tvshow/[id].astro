@@ -1,0 +1,61 @@
+---
+import { type TvShow } from '../../types/index';
+
+const { id } = Astro.params;
+import Layout from '../../layouts/Layout.astro';
+
+const response = await fetch(`http://localhost:4321/api/tvShows-details${id}`, {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+const data = await response.json();
+
+const tvShow: TvShow = data.data;
+const tvShowBackdropPath = `${
+  'https://image.tmdb.org/t/p/w500/' + tvShow?.backdrop_path
+}`;
+
+const isForAdults = tvShow?.adult ? true : false;
+const genresString = tvShow?.genres.map((genre) => genre.name).join(', ');
+const title = tvShow.original_name;
+---
+
+<Layout title={`TVShow Details | ${title}`}>
+  {
+    (
+      <section class="h-screen w-full flex flex-col justify-center items-center gap-4 bg-gradient-to-b from-black via-red-950 to-black text-white font-medium">
+        <div class="flex flex-col gap-4 justify-center items-center bg-black/50 h-full ">
+          <h4 class="text-4xl font-semibold">{title}</h4>
+          <div class="relative">
+            <img
+              class="rounded-xl z-20 absolute"
+              src={tvShowBackdropPath}
+              alt={tvShowBackdropPath}
+            />
+            <img
+              class="rounded-xl z-10  blur-xl"
+              src={tvShowBackdropPath}
+              alt={tvShowBackdropPath}
+            />
+          </div>
+          <strong>{isForAdults ? 'Only' : 'Not necessarily'} 18+ </strong>
+          <div class="flex gap-2">
+            <strong>Genres: </strong>
+            <ul class="flex">{genresString}</ul>
+          </div>
+          <p>
+            <strong>First air date:</strong> {tvShow.first_air_date}{' '}
+          </p>
+          <p class="max-w-[50%] text-center">
+            <strong>Overview:</strong> {tvShow.overview}
+          </p>
+          <p>
+            <strong>Average Vote:</strong> {tvShow.vote_average.toFixed(1)}/10
+          </p>
+        </div>
+      </section>
+    )
+  }
+</Layout>
